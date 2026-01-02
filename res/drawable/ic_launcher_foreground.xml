@@ -1,34 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2022 The LineageOS Project
+     SPDX-FileCopyrightText: 2025 The AxionAOSP
      SPDX-License-Identifier: Apache-2.0
 -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:aapt="http://schemas.android.com/aapt"
-    android:width="108dp"
     android:height="108dp"
-    android:viewportWidth="108"
-    android:viewportHeight="108">
-  <group>
-    <clip-path
-        android:pathData="M0,0h108v108h-108z"/>
-    <path
-        android:pathData="M54,66C60.75,66 66,63.627 66,57C66,47.373 60.75,42 54,42C47.25,42 42,47.373 42,57C42,63.627 47.25,66 54,66ZM54,57.5C57.057,57.5 60.055,56.942 62,56C61.125,58.603 59.333,62 54,62C48.667,62 46.875,58.603 46,56C47.945,56.942 50.943,57.5 54,57.5Z"
-        android:fillColor="#143721"
-        android:fillType="evenOdd"/>
-    <path
-        android:pathData="M28.54,28.54m-72,0a72,72 0,1 1,144 0a72,72 0,1 1,-144 0"
-        android:fillAlpha="0.6">
-      <aapt:attr name="android:fillColor">
-        <gradient
-            android:gradientRadius="72"
-            android:centerX="28.54"
-            android:centerY="28.54"
-            android:type="radial">
-          <item android:offset="0" android:color="#19FFFFFF"/>
-          <item android:offset="1" android:color="#00FFFFFF"/>
-        </gradient>
-      </aapt:attr>
-    </path>
-  </group>
+    android:width="108dp"
+    android:viewportHeight="108"
+    android:viewportWidth="108">
+    <group
+        android:scaleY="0.45"
+        android:scaleX="0.45"
+        android:pivotY="54"
+        android:pivotX="54">
+        <path android:fillColor="#3faf7c"
+            android:pathData="m55,5.17C25.18,5.17 1,24.23 1,47.74v0.11c0.88,16.11 10.94,29.79 25.31,35.97 -0.83,2.85 -5.32,18.35 -5.5,19.57 0,0 0,0.07 0,0.17 0,0.28 0.05,0.83 0.48,1.09 0.22,0.12 0.48,0.18 0.74,0.18 0.2,0 0.39,-0.04 0.56,-0.1 1.7,-0.24 19.67,-12.86 22.81,-15.08 3.11,0.44 6.31,0.67 9.55,0.67h0.05c29.83,0 54,-19.06 54,-42.58S84.82,5.17 55,5.17ZM53.8,64.26h-7.27v-12.03c0,-1.45 -0.36,-2.58 -1.07,-3.39 -0.72,-0.81 -1.67,-1.21 -2.86,-1.21 -0.84,0 -1.62,0.2 -2.33,0.59 -0.71,0.39 -1.27,0.92 -1.68,1.58 -0.41,0.66 -0.61,1.36 -0.61,2.08v12.38h-7.22v-32.23h7.22v11.58c0.92,-0.79 1.99,-1.42 3.24,-1.89 1.24,-0.47 2.42,-0.71 3.55,-0.71 1.78,0 3.34,0.39 4.71,1.18s2.42,1.93 3.18,3.43c0.76,1.5 1.14,3.26 1.14,5.3v13.34ZM78.55,34.07l-0.28,20.72h-6.3l-0.28,-20.72h6.85ZM65.42,64.26h-7.26v-22.78h7.26v22.78ZM65.69,36.56c-0.37,0.63 -0.88,1.14 -1.54,1.53 -0.66,0.39 -1.42,0.59 -2.28,0.59s-1.59,-0.2 -2.25,-0.59c-0.66,-0.39 -1.17,-0.91 -1.54,-1.55 -0.36,-0.64 -0.55,-1.31 -0.55,-2.01s0.18,-1.37 0.55,-2.02c0.37,-0.64 0.88,-1.16 1.54,-1.56 0.66,-0.39 1.42,-0.59 2.28,-0.59s1.59,0.19 2.25,0.59c0.66,0.39 1.17,0.92 1.54,1.56 0.36,0.65 0.55,1.32 0.55,2.02s-0.18,1.39 -0.55,2.02ZM78.71,62.97c-0.35,0.59 -0.84,1.05 -1.47,1.4 -0.63,0.34 -1.36,0.52 -2.18,0.52s-1.51,-0.18 -2.15,-0.52c-0.63,-0.35 -1.12,-0.82 -1.47,-1.41 -0.35,-0.59 -0.53,-1.24 -0.53,-1.95s0.18,-1.35 0.53,-1.95c0.35,-0.59 0.84,-1.07 1.47,-1.42s1.35,-0.53 2.15,-0.53 1.55,0.18 2.18,0.53c0.63,0.35 1.11,0.82 1.47,1.41 0.35,0.59 0.53,1.24 0.53,1.95s-0.18,1.37 -0.53,1.96Z"
+            android:strokeWidth="0"/>
+    </group>
 </vector>

@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:minHeight="?attr/actionBarSize"
         android:background="@color/m3_surface"
-        app:theme="@style/ThemeOverlay.Material3.Toolbar">
+        app:theme="@style/BugleToolbarTheme">
 
         <com.android.messaging.ui.MaxHeightScrollView
             android:layout_width="match_parent"

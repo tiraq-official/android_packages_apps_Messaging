@@ -639,6 +639,14 @@
         <item name="widgetLayout">@layout/preference_material_switch</item>
     </style>
 
+    <!-- Toolbar foreground theme for the flat surface top bar (contact picker). -->
+    <style name="BugleToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="colorControlNormal">@color/m3_on_surface</item>
+        <item name="colorOnSurfaceVariant">@color/m3_on_surface_variant</item>
+        <item name="android:textColorPrimary">@color/m3_on_surface</item>
+        <item name="android:textColorSecondary">@color/m3_on_surface_variant</item>
+    </style>
+
     <style name="ShapeAppearanceOverlay" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">16dp</item>

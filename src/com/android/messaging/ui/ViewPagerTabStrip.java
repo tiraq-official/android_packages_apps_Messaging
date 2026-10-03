@@ -20,6 +20,7 @@ package com.android.messaging.ui;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
@@ -46,13 +47,13 @@ public class ViewPagerTabStrip extends LinearLayout {
 
         mSelectedUnderlineThickness =
                 res.getDimensionPixelSize(R.dimen.pager_tab_underline_selected);
-        int underlineColor = res.getColor(R.color.contact_picker_tab_underline, theme);
-        int backgroundColor = res.getColor(R.color.action_bar_background_color, theme);
 
         mSelectedUnderlinePaint = new Paint();
-        mSelectedUnderlinePaint.setColor(underlineColor);
+        // Material 3 shows the selected tab as a filled pill, so no underline is drawn.
+        mSelectedUnderlinePaint.setColor(Color.TRANSPARENT);
 
-        setBackgroundColor(backgroundColor);
+        // The container pill (ViewPagerTabs) and the per-tab selector provide the background.
+        setBackgroundColor(Color.TRANSPARENT);
         setWillNotDraw(false);
     }
 

@@ -204,7 +204,6 @@
                         android:layout_width="@dimen/conversation_message_contact_icon_size"
                         android:layout_height="@dimen/conversation_message_contact_icon_size"
                         android:src="@drawable/ic_send_plane"
-                        android:tint="@color/m3_on_primary"
                         android:background="@drawable/send_button_background"
                         android:padding="12dp"
                         android:contentDescription="@string/sendButtonContentDescription"

@@ -7,6 +7,6 @@
         <shape android:shape="oval"><solid android:color="#FFFFFFFF" /></shape>
     </item>
     <item>
-        <shape android:shape="oval"><solid android:color="@color/m3_primary" /></shape>
+        <shape android:shape="oval"><solid android:color="@color/compose_send_button_color" /></shape>
     </item>
 </ripple>

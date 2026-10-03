@@ -182,7 +182,7 @@ public class ContactPickerFragment extends Fragment implements ContactPickerData
         mCustomHeaderViewPager.setCurrentItem(0);
 
         mToolbar = view.findViewById(R.id.toolbar);
-        mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_light);
+        mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_on_surface);
         mToolbar.setNavigationContentDescription(R.string.back);
         mToolbar.setNavigationOnClickListener(v -> mHost.onBackButtonPressed());
 

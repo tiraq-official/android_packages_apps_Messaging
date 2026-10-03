@@ -19,7 +19,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp"
+    android:paddingTop="2dp"
+    android:paddingBottom="2dp">
 
     <!-- The background displayed when the conversation is swiped sideways -->
     <LinearLayout
@@ -64,7 +68,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:attr/selectableItemBackground"
+            android:background="@drawable/conversation_item_background"
             android:clipToPadding="false"
             android:duplicateParentState="true"
             android:padding="@dimen/conversation_list_item_view_padding"
@@ -102,6 +106,14 @@
                     android:importantForAccessibility="no"
                     android:contentDescription="@null"
                     android:background="@android:color/transparent" />
+                <View
+                    android:id="@+id/conversation_unread_badge"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_gravity="top|end"
+                    android:background="@drawable/conversation_unread_badge"
+                    android:visibility="gone"
+                    android:importantForAccessibility="no" />
             </FrameLayout>
 
             <!-- The conversation name, message preview, etc -->

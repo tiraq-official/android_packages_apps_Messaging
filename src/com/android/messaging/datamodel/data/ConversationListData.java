@@ -62,6 +62,7 @@ public class ConversationListData extends BindableData
     private final Context mContext;
     private final boolean mArchivedMode;
     private LoaderManager mLoaderManager;
+    private ConversationFilter mFilter = ConversationFilter.ALL;
 
     public ConversationListData(final Context context, final ConversationListDataListener listener,
             final boolean archivedMode) {
@@ -98,10 +99,15 @@ public class ConversationListData extends BindableData
                             ParticipantColumns.BLOCKED + "=1", null, null);
                     break;
                 case CONVERSATION_LIST_LOADER:
+                    String selection = mArchivedMode ? WHERE_ARCHIVED : WHERE_NOT_ARCHIVED;
+                    final String filterSelection = mFilter.getSelection();
+                    if (filterSelection != null) {
+                        selection += filterSelection;
+                    }
                     loader = new BoundCursorLoader(bindingId, mContext,
                             MessagingContentProvider.CONVERSATIONS_URI,
                             ConversationListItemData.PROJECTION,
-                            mArchivedMode ? WHERE_ARCHIVED : WHERE_NOT_ARCHIVED,
+                            selection,
                             null,       // selection args
                             SORT_ORDER);
                     break;
@@ -176,6 +182,16 @@ public class ConversationListData extends BindableData
         mLoaderManager = loaderManager;
         mLoaderManager.initLoader(CONVERSATION_LIST_LOADER, mArgs, this);
         mLoaderManager.initLoader(BLOCKED_PARTICIPANTS_AVAILABLE_LOADER, mArgs, this);
+    }
+
+    public void setFilter(final ConversationFilter filter) {
+        if (mFilter == filter) {
+            return;
+        }
+        mFilter = filter;
+        if (mLoaderManager != null && mArgs != null) {
+            mLoaderManager.restartLoader(CONVERSATION_LIST_LOADER, mArgs, this);
+        }
     }
 
     public void handleMessagesSeen() {

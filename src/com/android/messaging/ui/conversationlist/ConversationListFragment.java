@@ -47,6 +47,7 @@ import com.android.messaging.datamodel.binding.Binding;
 import com.android.messaging.datamodel.binding.BindingBase;
 import com.android.messaging.datamodel.data.ConversationListData;
 import com.android.messaging.datamodel.data.ConversationListData.ConversationListDataListener;
+import com.android.messaging.datamodel.data.ConversationFilter;
 import com.android.messaging.datamodel.data.ConversationListItemData;
 import com.android.messaging.ui.ListEmptyView;
 import com.android.messaging.ui.SnackBarInteraction;
@@ -55,6 +56,7 @@ import com.android.messaging.util.AccessibilityUtil;
 import com.android.messaging.util.ImeUtil;
 import com.android.messaging.util.LogUtil;
 import com.android.messaging.util.UiUtils;
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import java.util.ArrayList;
@@ -88,6 +90,8 @@ public class ConversationListFragment extends Fragment implements ConversationLi
     private ConversationListFragmentHost mHost;
     private RecyclerView mRecyclerView;
     private ExtendedFloatingActionButton mStartNewConversationButton;
+    private ChipGroup mFilterChipGroup;
+    private ConversationFilter mFilter = ConversationFilter.ALL;
     private ListEmptyView mEmptyListMessageView;
     private ConversationListAdapter mAdapter;
 
@@ -228,6 +232,14 @@ public class ConversationListFragment extends Fragment implements ConversationLi
                     mHost.onCreateConversationClick());
         }
 
+        // Material 3 category filter chips.
+        mFilterChipGroup = rootView.findViewById(R.id.filter_chip_group);
+        if (mArchiveMode || mForwardMessageMode) {
+            mFilterChipGroup.setVisibility(View.GONE);
+        } else {
+            setupFilterChips(rootView);
+        }
+
         // The root view has a non-null background, which by default is deemed by the framework
         // to be a "transition group," where all child views are animated together during an
         // activity transition. However, we want each individual items in the recycler view to
@@ -236,6 +248,38 @@ public class ConversationListFragment extends Fragment implements ConversationLi
 
         setHasOptionsMenu(true);
         return rootView;
+    }
+
+    private void setupFilterChips(final View rootView) {
+        final View.OnClickListener listener = view -> {
+            final int id = view.getId();
+            final ConversationFilter filter;
+            if (id == R.id.filter_chip_personal) {
+                filter = ConversationFilter.PERSONAL;
+            } else if (id == R.id.filter_chip_otp) {
+                filter = ConversationFilter.OTP;
+            } else if (id == R.id.filter_chip_offers) {
+                filter = ConversationFilter.OFFERS;
+            } else {
+                filter = ConversationFilter.ALL;
+            }
+            applyFilter(filter);
+        };
+        rootView.findViewById(R.id.filter_chip_all).setOnClickListener(listener);
+        rootView.findViewById(R.id.filter_chip_personal).setOnClickListener(listener);
+        rootView.findViewById(R.id.filter_chip_otp).setOnClickListener(listener);
+        rootView.findViewById(R.id.filter_chip_offers).setOnClickListener(listener);
+    }
+
+    private void applyFilter(final ConversationFilter filter) {
+        if (mFilter == filter) {
+            return;
+        }
+        mFilter = filter;
+        if (mRecyclerView != null) {
+            mRecyclerView.scrollToPosition(0);
+        }
+        mListBinding.getData().setFilter(filter);
     }
 
     @Override
@@ -355,9 +399,13 @@ public class ConversationListFragment extends Fragment implements ConversationLi
                 emptyListText = R.string.conversation_list_first_sync_text;
             } else if (mArchiveMode) {
                 emptyListText = R.string.archived_conversation_list_empty_text;
+            } else if (mFilter != ConversationFilter.ALL) {
+                emptyListText = R.string.conversation_filter_empty;
             } else {
                 emptyListText = R.string.conversation_list_empty_text;
             }
+            mEmptyListMessageView.setTitleHint(mArchiveMode
+                    ? R.string.archived_conversation_list_empty_title : 0);
             mEmptyListMessageView.setTextHint(emptyListText);
             mEmptyListMessageView.setVisibility(View.VISIBLE);
             mEmptyListMessageView.setIsImageVisible(true);

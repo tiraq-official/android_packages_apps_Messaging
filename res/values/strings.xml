@@ -19,6 +19,14 @@
     <!-- The name of the application as it appears under the main Launcher icon and in various activity titles -->
     <string name="app_name">Messaging</string>
 
+    <!-- Conversation list filter chips -->
+    <string name="conversation_filter_all">All</string>
+    <string name="conversation_filter_personal">Personal</string>
+    <string name="conversation_filter_otp">OTP</string>
+    <string name="conversation_filter_offers">Offers</string>
+    <string name="conversation_filter_empty">No conversations in this category</string>
+    <string name="archived_conversation_list_empty_title">No archived conversations</string>
+
     <!-- The name of the application as it appears in external share intent dialogs -->
     <string name="share_intent_label">Messaging</string>
     <!-- The title when selecting a conversation to share to -->

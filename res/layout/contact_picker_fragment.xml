@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
     Copyright (C) 2015 The Android Open Source Project
+    Copyright (C) 2025 The LineageOS Project
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -26,13 +27,17 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:minHeight="?attr/actionBarSize"
-        android:background="@color/action_bar_background_color"
-        app:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+        android:background="@color/m3_surface"
+        app:theme="@style/ThemeOverlay.Material3.Toolbar">
 
         <com.android.messaging.ui.MaxHeightScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
             android:maxHeight="@dimen/compose_message_chips_view_max_height">
 
             <com.android.messaging.ui.contact.ContactRecipientAutoCompleteView
@@ -43,6 +48,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:minHeight="@dimen/compose_message_contacts_height"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:background="@drawable/recipient_field_background"
+                android:textColor="@color/m3_on_surface"
+                android:textColorHint="@color/m3_on_surface_variant"
                 android:popupBackground="@drawable/contact_popup_background"
                 android:dropDownWidth="match_parent"
                 android:hint="@string/recipient_hint"
@@ -50,8 +60,8 @@
                 app:chipHeight="@dimen/compose_message_chip_height"
                 app:chipPadding="@dimen/compose_message_chip_padding"
                 app:imageSpanAlignment="baseline"
-                app:unselectedChipTextColor="@color/chips_text_color"
-                app:unselectedChipBackgroundColor="@color/chips_background_color">
+                app:unselectedChipTextColor="@color/m3_on_secondary_container"
+                app:unselectedChipBackgroundColor="@color/m3_secondary_container">
 
                 <!-- Put focus on the chips view by default so soft keyboard can be shown -->
                 <requestFocus />

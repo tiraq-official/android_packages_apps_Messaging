@@ -129,6 +129,7 @@ public class ConversationListItemView extends FrameLayout implements OnClickList
     private ContactIconView mContactIconView;
     private ImageView mContactCheckmarkView;
     private ImageView mFailedStatusIconView;
+    private View mUnreadBadgeView;
     private ImageView mCrossSwipeArchiveLeftImageView;
     private ImageView mCrossSwipeArchiveRightImageView;
     private AsyncImageView mImagePreviewView;
@@ -155,6 +156,7 @@ public class ConversationListItemView extends FrameLayout implements OnClickList
         mContactIconView = findViewById(R.id.conversation_icon);
         mContactCheckmarkView = findViewById(R.id.conversation_checkmark);
         mFailedStatusIconView = findViewById(R.id.conversation_failed_status_icon);
+        mUnreadBadgeView = findViewById(R.id.conversation_unread_badge);
         mCrossSwipeArchiveLeftImageView = findViewById(R.id.crossSwipeArchiveIconLeft);
         mCrossSwipeArchiveRightImageView = findViewById(R.id.crossSwipeArchiveIconRight);
         mImagePreviewView = findViewById(R.id.conversation_image_preview);
@@ -463,6 +465,11 @@ public class ConversationListItemView extends FrameLayout implements OnClickList
 
         mContactCheckmarkView.setVisibility(checkmarkVisiblity);
         mFailedStatusIconView.setVisibility(failStatusVisiblity);
+        // Material 3 unread indicator dot on the avatar.
+        if (mUnreadBadgeView != null) {
+            mUnreadBadgeView.setVisibility(
+                    (!mData.getIsRead() && !mData.getShowDraft()) ? VISIBLE : GONE);
+        }
 
         final Uri previewUri = mData.getShowDraft() ?
                 mData.getDraftPreviewUri() : mData.getPreviewUri();

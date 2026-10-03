@@ -22,29 +22,33 @@
     <color name="permission_check_activity_background">@color/primary_color</color>
 
     <!--  Action bar -->
-    <color name="action_bar_title_text_color">@android:color/system_neutral1_0</color>
+    <color name="action_bar_title_text_color">@color/m3_on_surface</color>
     <color name="action_bar_background_color">@android:color/system_accent1_600</color>
     <color name="action_bar_background_color_dark">@android:color/system_accent1_700</color>
-    <color name="contextual_action_bar_background_color">@android:color/system_accent1_600</color>
+    <color name="contextual_action_bar_background_color">@color/m3_surface_container</color>
     <color name="archived_conversation_action_bar_background_color">@android:color/system_accent1_700</color>
     <color name="archived_conversation_action_bar_background_color_dark">@android:color/system_accent1_600</color>
 
     <!-- Conversation list -->
-    <color name="conversation_list_item_read">#636363</color>
-    <color name="conversation_list_item_unread">#323232</color>
+    <color name="conversation_list_item_read">@color/m3_on_surface</color>
+    <color name="conversation_list_item_unread">@color/m3_on_surface</color>
     <color name="conversation_list_error">#F05A24</color>
-    <color name="conversation_list_name">#DE000000</color>
-    <color name="conversation_list_details">#8A000000</color>
+    <color name="conversation_list_name">@color/m3_on_surface</color>
+    <color name="conversation_list_details">@color/m3_on_surface_variant</color>
+    <color name="conversation_list_item_background">@color/m3_surface_container</color>
+    <color name="conversation_list_item_ripple">@color/m3_on_surface</color>
+    <color name="conversation_unread_badge">@android:color/system_accent1_600</color>
+    <color name="conversation_unread_badge_text">@android:color/system_neutral1_0</color>
 
     <color name="conversation_compose_divider_start">#44000000</color>
 
-    <color name="message_text">#000000</color>
+    <color name="message_text">@color/m3_on_surface</color>
     <color name="timestamp_text_outgoing">#99323232</color>
     <color name="timestamp_text_incoming">#99ffffff</color>
     <color name="timestamp_text_failed">#99ff0000</color>
     <color name="compose_send_text_color">#000000</color>
 
-    <color name="message_title_text">#ff323232</color>
+    <color name="message_title_text">@color/m3_on_surface</color>
     <color name="message_download_failed_status_text">#000000</color>
     <color name="message_info_text">#99ffffff</color>
     <color name="message_info_text_incoming_download_failed">#6a6a6a</color>
@@ -59,12 +63,12 @@
     <color name="subject_editor_bubble">#ffffffff</color>
     <color name="message_text_color_incoming">#ffffffff</color>
     <color name="message_text_color_incoming_download_failed">#6a6a6a</color>
-    <color name="message_text_color_outgoing">#ff323232</color>
+    <color name="message_text_color_outgoing">@color/m3_on_primary_container</color>
     <color name="conversation_background">@color/window_background</color>
     <color name="conversation_edge_effect">#9d9d9d</color>
     <color name="compose_message_send_color">@color/lineage_accent</color>
     <color name="compose_message_send_color_pressed">#999999</color>
-    <color name="message_bubble_color_outgoing">#ffffffff</color>
+    <color name="message_bubble_color_outgoing">@color/m3_primary_container</color>
     <color name="message_error_bubble_color_incoming">#e2e2e2</color>
     <color name="message_audio_button_color_incoming">#ffffffff</color>
     <color name="message_bubble_color_selected">@android:color/system_accent3_300</color>
@@ -148,9 +152,9 @@
     <color name="text_highlight_color">@android:color/system_accent1_100</color>
     <color name="search_view_text_cursor">#b0dddddd</color>
 
-    <color name="settings_list_text_primary">#4d4d4d</color>
-    <color name="settings_list_text_secondary">#6d6d6d</color>
-    <color name="group_mms_setting_text_color">#333333</color>
+    <color name="settings_list_text_primary">@color/m3_on_surface</color>
+    <color name="settings_list_text_secondary">@color/m3_on_surface_variant</color>
+    <color name="group_mms_setting_text_color">@color/m3_on_surface</color>
 
     <color name="contact_picker_button_text_color">@color/primary_color</color>
 
@@ -164,4 +168,27 @@
     <color name="fastscroll_track_color">#1e000000</color>
     <color name="fastscroll_thumb_color">#42000000</color>
     <color name="fastscroll_preview_text_color">#ffffff</color>
+
+    <!--
+        Material 3 colour roles, mapped onto the platform Material You dynamic
+        palette. Night values are overridden in values-night/colors.xml.
+    -->
+    <color name="m3_primary">@android:color/system_accent1_600</color>
+    <color name="m3_on_primary">@android:color/system_neutral1_0</color>
+    <color name="m3_primary_container">@android:color/system_accent1_100</color>
+    <color name="m3_on_primary_container">@android:color/system_accent1_900</color>
+    <color name="m3_secondary">@android:color/system_accent2_600</color>
+    <color name="m3_on_secondary">@android:color/system_neutral1_0</color>
+    <color name="m3_secondary_container">@android:color/system_accent2_100</color>
+    <color name="m3_on_secondary_container">@android:color/system_accent2_900</color>
+    <color name="m3_tertiary">@android:color/system_accent3_600</color>
+    <color name="m3_surface">@android:color/system_neutral1_50</color>
+    <color name="m3_surface_container">@android:color/system_neutral1_100</color>
+    <color name="m3_on_surface">@android:color/system_neutral1_900</color>
+    <color name="m3_surface_variant">@android:color/system_neutral1_200</color>
+    <color name="m3_on_surface_variant">@android:color/system_neutral1_700</color>
+    <color name="m3_outline">@android:color/system_neutral1_500</color>
+    <color name="m3_outline_variant">@android:color/system_neutral1_300</color>
+    <color name="m3_error">#B3261E</color>
+    <color name="m3_on_error">@android:color/system_neutral1_0</color>
 </resources>

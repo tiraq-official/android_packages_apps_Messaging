@@ -31,6 +31,7 @@ import com.android.messaging.R;
  */
 public class ListEmptyView extends LinearLayout {
     private ImageView mEmptyImageHint;
+    private TextView mEmptyTitleHint;
     private TextView mEmptyTextHint;
 
     public ListEmptyView(final Context context, final AttributeSet attrs) {
@@ -42,11 +43,22 @@ public class ListEmptyView extends LinearLayout {
         super.onFinishInflate();
 
         mEmptyImageHint = findViewById(R.id.empty_image_hint);
+        mEmptyTitleHint = findViewById(R.id.empty_title_hint);
         mEmptyTextHint = findViewById(R.id.empty_text_hint);
     }
 
     public void setImageHint(final int resId) {
         mEmptyImageHint.setImageResource(resId);
+    }
+
+    /** Sets an optional, larger title shown above the hint text. */
+    public void setTitleHint(final int resId) {
+        if (resId == 0) {
+            mEmptyTitleHint.setVisibility(GONE);
+        } else {
+            mEmptyTitleHint.setText(getResources().getText(resId));
+            mEmptyTitleHint.setVisibility(VISIBLE);
+        }
     }
 
     public void setTextHint(final int resId) {
@@ -65,6 +77,7 @@ public class ListEmptyView extends LinearLayout {
         int gravity =
                 isVerticallyCentered ? Gravity.CENTER : Gravity.TOP | Gravity.CENTER_HORIZONTAL;
         ((LinearLayout.LayoutParams) mEmptyImageHint.getLayoutParams()).gravity = gravity;
+        ((LinearLayout.LayoutParams) mEmptyTitleHint.getLayoutParams()).gravity = gravity;
         ((LinearLayout.LayoutParams) mEmptyTextHint.getLayoutParams()).gravity = gravity;
         getLayoutParams().height =
                 isVerticallyCentered ? LayoutParams.WRAP_CONTENT : LayoutParams.MATCH_PARENT;

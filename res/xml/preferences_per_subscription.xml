@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
     Copyright (C) 2015 The Android Open Source Project
-    Copyright (C) 2024 The LineageOS Project
+    Copyright (C) 2024-2025 The LineageOS Project
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -16,27 +16,36 @@
     limitations under the License.
 -->
 <!-- Preference screen definition for Bugle's subscription-specific settings -->
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
         android:key="@string/mms_messaging_category_pref_key"
         android:title="@string/mms_messaging_category_pref_title">
 
         <Preference
+            android:icon="@drawable/ic_pref_group"
+            app:iconSpaceReserved="true"
             android:title="@string/group_mms_pref_title"
             android:key="@string/group_mms_pref_key"/>
 
         <com.android.messaging.ui.appsettings.PhoneNumberPreference
+            android:icon="@drawable/ic_pref_phone"
+            app:iconSpaceReserved="true"
             android:key="@string/mms_phone_number_pref_key"
             android:title="@string/mms_phone_number_pref_title" />
 
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_pref_download"
+            app:iconSpaceReserved="true"
             android:key="@string/auto_retrieve_mms_pref_key"
             android:title="@string/auto_retrieve_mms_pref_title"
             android:summary="@string/auto_retrieve_mms_pref_summary"
             android:defaultValue="@bool/auto_retrieve_mms_pref_default" />
 
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_pref_roaming"
+            app:iconSpaceReserved="true"
             android:key="@string/auto_retrieve_mms_when_roaming_pref_key"
             android:dependency="@string/auto_retrieve_mms_pref_key"
             android:title="@string/auto_retrieve_mms_when_roaming_pref_title"
@@ -50,6 +59,8 @@
         android:title="@string/advanced_category_pref_title">
 
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_pref_message"
+            app:iconSpaceReserved="true"
             android:key="@string/delivery_reports_pref_key"
             android:title="@string/delivery_reports_pref_title"
             android:summary="@string/delivery_reports_pref_summary"

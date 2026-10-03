@@ -52,7 +52,7 @@ public class ConversationListActivity extends AbstractConversationListActivity {
         actionBar.setDisplayHomeAsUpEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setBackgroundDrawable(new ColorDrawable(
-                getResources().getColor(R.color.action_bar_background_color)));
+                getResources().getColor(R.color.m3_surface, getTheme())));
         actionBar.show();
         super.updateActionBar(actionBar);
     }

@@ -120,13 +120,9 @@ public class ContactRecipientAutoCompleteView extends RecipientEditTextView {
         addTextChangedListener(new ContactChipsWatcher());
         setOnFocusListShrinkRecipients(false);
 
-        Drawable drawable = ResourcesCompat.getDrawable(context.getResources(),
-                androidx.appcompat.R.drawable.abc_textfield_search_default_mtrl_alpha,
-                context.getTheme());
-        int drawableColor = ContextCompat.getColor(context, android.R.color.white);
-        DrawableCompat.setTint(drawable.mutate(), drawableColor);
-
-        setBackground(drawable);
+        // Material 3: the recipient field is a rounded pill instead of an underlined search box.
+        setBackground(ResourcesCompat.getDrawable(context.getResources(),
+                R.drawable.recipient_field_background, context.getTheme()));
     }
 
     public void setContactChipsListener(final ContactChipsChangeListener listener) {

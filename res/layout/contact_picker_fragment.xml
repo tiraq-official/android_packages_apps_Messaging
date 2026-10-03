@@ -51,6 +51,8 @@
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:background="@drawable/recipient_field_background"
+                android:drawableStart="@drawable/ic_search"
+                android:drawablePadding="10dp"
                 android:textColor="@color/m3_on_surface"
                 android:textColorHint="@color/m3_on_surface_variant"
                 android:popupBackground="@drawable/contact_popup_background"

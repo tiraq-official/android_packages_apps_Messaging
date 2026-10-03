@@ -17,12 +17,15 @@
 package com.android.messaging.ui.contact;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -53,6 +56,7 @@ public class ContactListItemView extends LinearLayout implements OnClickListener
     private ContactIconView mContactIconView;
     private ImageView mContactCheckmarkView;
     private ImageView mWorkProfileIcon;
+    private ImageButton mContactCallButton;
     private HostInterface mHostInterface;
     private boolean mShouldShowAlphabetHeader;
 
@@ -71,6 +75,15 @@ public class ContactListItemView extends LinearLayout implements OnClickListener
         mContactIconView = findViewById(R.id.contact_icon);
         mContactCheckmarkView = findViewById(R.id.contact_checkmark);
         mWorkProfileIcon = findViewById(R.id.work_profile_icon);
+        mContactCallButton = findViewById(R.id.contact_call_button);
+        mContactCallButton.setOnClickListener(v -> {
+            final CharSequence destination = mData.getDestination();
+            if (!TextUtils.isEmpty(destination)) {
+                final Intent intent = new Intent(Intent.ACTION_DIAL,
+                        Uri.parse("tel:" + Uri.encode(destination.toString())));
+                getContext().startActivity(intent);
+            }
+        });
     }
 
     /**

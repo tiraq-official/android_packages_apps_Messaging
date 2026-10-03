@@ -26,12 +26,14 @@
         <Preference
             android:icon="@drawable/ic_pref_group"
             app:iconSpaceReserved="true"
+            android:widgetLayout="@layout/preference_chevron"
             android:title="@string/group_mms_pref_title"
             android:key="@string/group_mms_pref_key"/>
 
         <com.android.messaging.ui.appsettings.PhoneNumberPreference
             android:icon="@drawable/ic_pref_phone"
             app:iconSpaceReserved="true"
+            android:widgetLayout="@layout/preference_chevron"
             android:key="@string/mms_phone_number_pref_key"
             android:title="@string/mms_phone_number_pref_title" />
 

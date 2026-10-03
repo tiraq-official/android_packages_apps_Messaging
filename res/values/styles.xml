@@ -624,19 +624,52 @@
     </style>
 
     <style name="AppPreferenceThemeOverlay" parent="@style/PreferenceThemeOverlay">
+        <item name="preferenceStyle">@style/AppPreferenceCard</item>
         <item name="switchPreferenceCompatStyle">@style/AppSwitchPreference</item>
+        <item name="editTextPreferenceStyle">@style/AppEditTextPreference</item>
+        <item name="preferenceScreenStyle">@style/AppPreferenceScreen</item>
         <item name="preferenceCategoryStyle">@style/AppPreferenceCategory</item>
+        <item name="preferenceCategoryTitleTextColor">@color/m3_primary</item>
+        <item name="preferenceCategoryTitleTextAppearance">@style/AppPreferenceCategoryTitle</item>
     </style>
 
     <!-- Material 3 settings section header (accent, uppercase). -->
     <style name="AppPreferenceCategory" parent="@style/Preference.Category.Material">
-        <item name="android:textColor">@color/m3_primary</item>
+        <item name="allowDividerAbove">false</item>
+        <item name="allowDividerBelow">false</item>
+    </style>
+
+    <style name="AppPreferenceCategoryTitle" parent="@style/TextAppearance.AppCompat.Body2">
         <item name="android:textAllCaps">true</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/m3_primary</item>
+    </style>
+
+    <!-- Material 3 card-style settings rows (all preference types). -->
+    <style name="AppPreferenceCard" parent="@style/Preference.Material">
+        <item name="android:layout">@layout/preference_m3</item>
+        <item name="allowDividerAbove">false</item>
+        <item name="allowDividerBelow">false</item>
+    </style>
+
+    <style name="AppEditTextPreference" parent="@style/Preference.DialogPreference.EditTextPreference.Material">
+        <item name="android:layout">@layout/preference_m3</item>
+        <item name="allowDividerAbove">false</item>
+        <item name="allowDividerBelow">false</item>
+    </style>
+
+    <style name="AppPreferenceScreen" parent="@style/Preference.PreferenceScreen.Material">
+        <item name="android:layout">@layout/preference_m3</item>
+        <item name="allowDividerAbove">false</item>
+        <item name="allowDividerBelow">false</item>
     </style>
 
     <style name="AppSwitchPreference" parent="@style/Preference.SwitchPreferenceCompat.Material">
         <item name="widgetLayout">@layout/preference_material_switch</item>
+        <item name="android:layout">@layout/preference_m3</item>
+        <item name="allowDividerAbove">false</item>
+        <item name="allowDividerBelow">false</item>
     </style>
 
     <!-- Toolbar foreground theme for the flat surface top bar (contact picker). -->

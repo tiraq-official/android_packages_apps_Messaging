@@ -1467,9 +1467,12 @@ public class ConversationFragment extends Fragment implements ConversationDataLi
     }
 
     private void updateActionAndStatusBarColor(final ActionBar actionBar) {
-        final int themeColor = ConversationDrawables.get().getConversationThemeColor();
-        actionBar.setBackgroundDrawable(new ColorDrawable(themeColor));
-        UiUtils.setStatusBarColor(getActivity(), themeColor);
+        // Material 3: a flat, dark top bar that sits just above the chat background, instead of
+        // the (pure blue) conversation accent colour.
+        final int barColor = getResources().getColor(R.color.m3_surface_container,
+                getActivity().getTheme());
+        actionBar.setBackgroundDrawable(new ColorDrawable(barColor));
+        UiUtils.setStatusBarColor(getActivity(), barColor);
     }
 
     public void updateActionBar(final ActionBar actionBar) {

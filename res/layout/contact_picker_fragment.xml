@@ -30,7 +30,7 @@
         android:background="@color/m3_surface"
         app:theme="@style/BugleToolbarTheme">
 
-        <com.android.messaging.ui.MaxHeightScrollView
+        <com.tiraq.messaging.ui.MaxHeightScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -40,7 +40,7 @@
             android:layout_marginBottom="6dp"
             android:maxHeight="@dimen/compose_message_chips_view_max_height">
 
-            <com.android.messaging.ui.contact.ContactRecipientAutoCompleteView
+            <com.tiraq.messaging.ui.contact.ContactRecipientAutoCompleteView
                 android:forceDarkAllowed="false"
                 android:id="@+id/recipient_text_view"
                 style="@style/RecipientEditTextView"
@@ -67,9 +67,9 @@
 
                 <!-- Put focus on the chips view by default so soft keyboard can be shown -->
                 <requestFocus />
-            </com.android.messaging.ui.contact.ContactRecipientAutoCompleteView>
+            </com.tiraq.messaging.ui.contact.ContactRecipientAutoCompleteView>
 
-        </com.android.messaging.ui.MaxHeightScrollView>
+        </com.tiraq.messaging.ui.MaxHeightScrollView>
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -77,7 +77,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
-        <com.android.messaging.ui.CustomHeaderViewPager
+        <com.tiraq.messaging.ui.CustomHeaderViewPager
             android:id="@+id/contact_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

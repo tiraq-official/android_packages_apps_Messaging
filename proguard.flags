@@ -22,9 +22,9 @@
                 RuntimeVisibleTypeAnnotations,
                 AnnotationDefault
 
--keep class com.android.messaging.* { *; }
--keep class com.android.messaging.*.* { *; }
--keep class com.android.messaging.*.*.* { *; }
+-keep class com.tiraq.messaging.* { *; }
+-keep class com.tiraq.messaging.*.* { *; }
+-keep class com.tiraq.messaging.*.*.* { *; }
 
 # TODO(b/373579455): Evaluate if <init> needs to be kept.
 -keep public class * extends android.app.Activity {
@@ -72,7 +72,7 @@
 -keep class android.support.rastermill.** { *; }
 
 # Preserve the name of the getCaller method so it can find itself in the stack trace it generates
--keepclassmembers public class com.android.messaging.util.DebugUtils {
+-keepclassmembers public class com.tiraq.messaging.util.DebugUtils {
   public static java.lang.StackTraceElement getCaller(...);
 }
 

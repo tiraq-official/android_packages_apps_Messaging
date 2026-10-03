@@ -40,4 +40,4 @@ if [ $# -lt 1 ]; then
     exit 1
 fi
 
-adb shell su -c sqlite3 $opts data/data/com.android.messaging/databases/bugle_db "$1"
+adb shell su -c sqlite3 $opts data/data/com.tiraq.messaging/databases/bugle_db "$1"

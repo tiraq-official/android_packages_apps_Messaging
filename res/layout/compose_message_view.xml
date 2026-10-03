@@ -15,7 +15,7 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-<com.android.messaging.ui.conversation.ComposeMessageView
+<com.tiraq.messaging.ui.conversation.ComposeMessageView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -63,7 +63,7 @@
             android:clipToPadding="false"
             android:orientation="horizontal">
 
-            <com.android.messaging.ui.PlainTextEditText
+            <com.tiraq.messaging.ui.PlainTextEditText
                 android:background="@drawable/subject_editor_bubble"
                 android:id="@+id/compose_subject_text"
                 style="@style/ConversationComposeSubjectText"
@@ -137,7 +137,7 @@
                         android:paddingStart="16dp"
                         android:paddingEnd="2dp">
 
-                        <com.android.messaging.ui.PlainTextEditText
+                        <com.tiraq.messaging.ui.PlainTextEditText
                             android:id="@+id/compose_message_text"
                             style="@style/ConversationComposeSendText"
                             android:layout_height="wrap_content"
@@ -190,7 +190,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="top" >
-                    <com.android.messaging.ui.conversation.SimIconView
+                    <com.tiraq.messaging.ui.conversation.SimIconView
                         android:id="@+id/self_send_icon"
                         android:layout_width="@dimen/conversation_message_contact_icon_size"
                         android:layout_height="@dimen/conversation_message_contact_icon_size"
@@ -229,4 +229,4 @@
         android:layout_height="wrap_content"
         android:layout_weight="0" />
 
-</com.android.messaging.ui.conversation.ComposeMessageView>
+</com.tiraq.messaging.ui.conversation.ComposeMessageView>

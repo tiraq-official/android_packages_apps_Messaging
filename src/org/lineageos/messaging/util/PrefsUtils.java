@@ -17,9 +17,9 @@
 package org.lineageos.messaging.util;
 
 import android.content.Context;
-import com.android.messaging.Factory;
-import com.android.messaging.R;
-import com.android.messaging.util.BuglePrefs;
+import com.tiraq.messaging.Factory;
+import com.tiraq.messaging.R;
+import com.tiraq.messaging.util.BuglePrefs;
 
 public class PrefsUtils {
     private PrefsUtils() {

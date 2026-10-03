@@ -24,7 +24,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseArray;
 
-import com.android.messaging.R;
+import com.tiraq.messaging.R;
 
 /**
  * The default implementation of loader for carrier config values

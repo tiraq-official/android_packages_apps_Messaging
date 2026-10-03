@@ -18,7 +18,9 @@ package com.android.messaging.ui.conversation;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.graphics.Rect;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -33,12 +35,18 @@ import android.text.TextWatcher;
 import android.text.format.Formatter;
 import android.util.AttributeSet;
 import android.view.ContextThemeWrapper;
+import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.inputmethod.EditorInfo;
+import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -128,6 +136,8 @@ public class ComposeMessageView extends LinearLayout
     private ImageButton mDeleteSubjectButton;
     private AttachmentPreview mAttachmentPreview;
     private ImageButton mAttachMediaButton;
+    private ImageButton mEmojiButton;
+    private ImageButton mCameraButton;
 
     private final Binding<DraftMessageData> mBinding;
     private IComposeMessageViewHost mHost;
@@ -287,6 +297,13 @@ public class ComposeMessageView extends LinearLayout
             // Showing the media picker is treated as starting to compose the message.
             mInputManager.showHideMediaPicker(true /* show */, true /* animate */);
         });
+
+        // Material 3 Expressive compose bar: emoji and camera buttons live inside the pill field.
+        mEmojiButton = findViewById(R.id.compose_emoji_button);
+        mEmojiButton.setOnClickListener(clickView -> showEmojiPicker());
+        mCameraButton = findViewById(R.id.compose_camera_button);
+        mCameraButton.setOnClickListener(clickView ->
+                mInputManager.showHideMediaPicker(true /* show */, true /* animate */));
 
         mAttachmentPreview = findViewById(R.id.attachment_draft_view);
         mAttachmentPreview.setComposeMessageView(this);
@@ -691,34 +708,14 @@ public class ComposeMessageView extends LinearLayout
 
         // Update the send message button. Self icon uri might be null if self participant data
         // and/or conversation metadata hasn't been loaded by the host.
+        // Material 3 Expressive: the send button is always shown in the compose bar. The
+        // self/SIM avatar is no longer used as a placeholder for it.
         final Uri selfSendButtonUri = getSelfSendButtonIconUri();
-        int sendWidgetMode = SEND_WIDGET_MODE_SELF_AVATAR;
-        if (selfSendButtonUri != null) {
-            if (hasWorkingDraft && isDataLoadedForMessageSend()) {
-                UiUtils.revealOrHideViewWithAnimation(mSendButton, VISIBLE, null);
-                if (isOverriddenAvatarAGroup()) {
-                    // If the host has overriden the avatar to show a group avatar where the
-                    // send button sits, we have to hide the group avatar because it can be larger
-                    // than the send button and pieces of the avatar will stick out from behind
-                    // the send button.
-                    UiUtils.revealOrHideViewWithAnimation(mSelfSendIcon, GONE, null);
-                }
-                mMmsIndicator.setVisibility(draftMessageData.getIsMms() ? VISIBLE : INVISIBLE);
-                sendWidgetMode = SEND_WIDGET_MODE_SEND_BUTTON;
-            } else {
-                mSelfSendIcon.setImageResourceUri(selfSendButtonUri);
-                if (isOverriddenAvatarAGroup()) {
-                    UiUtils.revealOrHideViewWithAnimation(mSelfSendIcon, VISIBLE, null);
-                }
-                UiUtils.revealOrHideViewWithAnimation(mSendButton, GONE, null);
-                mMmsIndicator.setVisibility(INVISIBLE);
-                if (shouldShowSimSelector(mConversationDataModel.getData())) {
-                    sendWidgetMode = SEND_WIDGET_MODE_SIM_SELECTOR;
-                }
-            }
-        } else {
-            mSelfSendIcon.setImageResourceUri(null);
-        }
+        mSelfSendIcon.setImageResourceUri(selfSendButtonUri);
+        UiUtils.revealOrHideViewWithAnimation(mSelfSendIcon, GONE, null);
+        UiUtils.revealOrHideViewWithAnimation(mSendButton, VISIBLE, null);
+        mMmsIndicator.setVisibility(draftMessageData.getIsMms() ? VISIBLE : INVISIBLE);
+        final int sendWidgetMode = SEND_WIDGET_MODE_SEND_BUTTON;
 
         if (mSendWidgetMode != sendWidgetMode || sendWidgetMode == SEND_WIDGET_MODE_SIM_SELECTOR) {
             setSendButtonAccessibility(sendWidgetMode);
@@ -953,6 +950,33 @@ public class ComposeMessageView extends LinearLayout
 
     public void onAttachmentPreviewLongClicked() {
         mHost.showAttachmentChooser();
+    }
+
+    /**
+     * Material 3 Expressive: shows a compact emoji picker anchored to the bottom of the screen
+     * and inserts the chosen emoji into the message field.
+     */
+    private void showEmojiPicker() {
+        final Context context = getContext();
+        final View content = LayoutInflater.from(context).inflate(R.layout.emoji_picker, null);
+        final GridView grid = content.findViewById(R.id.emoji_grid);
+        final String[] emojis = context.getResources().getStringArray(R.array.compose_emoji);
+        grid.setAdapter(new ArrayAdapter<>(context, R.layout.emoji_picker_item, emojis));
+
+        final int height = (int) (300 * context.getResources().getDisplayMetrics().density);
+        final PopupWindow popup = new PopupWindow(content,
+                ViewGroup.LayoutParams.MATCH_PARENT, height);
+        popup.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        popup.setOutsideTouchable(true);
+        popup.setInputMethodMode(PopupWindow.INPUT_METHOD_NOT_NEEDED);
+
+        grid.setOnItemClickListener((parent, view, position, id) -> {
+            final int start = Math.max(mComposeEditText.getSelectionStart(), 0);
+            mComposeEditText.getText().insert(start, emojis[position]);
+            popup.dismiss();
+        });
+
+        popup.showAtLocation(this, Gravity.BOTTOM, 0, 0);
     }
 
     @Override

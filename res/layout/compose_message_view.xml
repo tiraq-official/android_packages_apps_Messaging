@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
     Copyright (C) 2015 The Android Open Source Project
-    Copyright (C) 2024 The LineageOS Project
+    Copyright (C) 2024-2025 The LineageOS Project
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@
         <View
             android:id="@+id/top_margin"
             android:layout_width="match_parent"
-            android:layout_height="16dp" />
+            android:layout_height="8dp" />
 
         <include layout="@layout/attachment_preview"
             android:id="@+id/attachment_draft_view"
@@ -89,9 +89,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
             android:baselineAligned="false">
 
-            <!-- Contains compose message bubble and character counter for SMS or attachments size
+            <!-- Contains compose message field and character counter for SMS or attachments size
                  for MMS which should be left aligned -->
             <LinearLayout
                 android:layout_width="0dp"
@@ -99,36 +103,70 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <!-- Contains media button and compose message bubble whose centers should be
+                <!-- Contains media button and the pill-shaped compose field whose centers should be
                 vertically aligned -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
 
                     <ImageButton
                         android:id="@+id/attach_media_button"
-                        style="@style/ComposeMessageViewAttachMediaButtonStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/conversation_message_contact_icon_size"
+                        android:layout_height="@dimen/conversation_message_contact_icon_size"
                         android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="8dp"
                         android:src="@drawable/ic_attachment_dark"
-                        android:minHeight="48dp"
-                        android:minWidth="48dp"
-                        android:paddingTop="@dimen/compose_message_attachment_padding_topBottom"
-                        android:paddingBottom="@dimen/compose_message_attachment_padding_topBottom"
+                        android:tint="@color/m3_on_surface_variant"
+                        android:background="@drawable/compose_attach_button_background"
+                        android:padding="12dp"
                         android:contentDescription="@string/attachMediaButtonContentDescription" />
 
-                    <com.android.messaging.ui.PlainTextEditText
-                        android:id="@+id/compose_message_text"
-                        style="@style/ConversationComposeSendText"
-                        android:layout_height="wrap_content"
+                    <!-- Material 3 Expressive pill field, with emoji + camera inside its end -->
+                    <LinearLayout
+                        android:id="@+id/compose_field_container"
                         android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:layout_gravity="center"
-                        android:background="@drawable/msg_bubble_input_rounded"
-                        android:hint="@string/compose_message_view_hint_text"
-                        android:imeOptions="actionSend|flagNoEnterAction|flagNoExtractUi" />
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/compose_field_background"
+                        android:minHeight="@dimen/conversation_message_contact_icon_size"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="2dp">
+
+                        <com.android.messaging.ui.PlainTextEditText
+                            android:id="@+id/compose_message_text"
+                            style="@style/ConversationComposeSendText"
+                            android:layout_height="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_gravity="center_vertical"
+                            android:paddingStart="0dp"
+                            android:paddingEnd="0dp"
+                            android:layout_marginEnd="0dp"
+                            android:background="@null"
+                            android:hint="@string/compose_message_view_hint_text"
+                            android:imeOptions="actionSend|flagNoEnterAction|flagNoExtractUi" />
+
+                        <ImageButton
+                            android:id="@+id/compose_emoji_button"
+                            style="@style/ComposeMessageInlineIconButton"
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:src="@drawable/ic_emoji"
+                            android:contentDescription="@string/emoji_button_content_description" />
+
+                        <ImageButton
+                            android:id="@+id/compose_camera_button"
+                            style="@style/ComposeMessageInlineIconButton"
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:src="@drawable/ic_camera"
+                            android:contentDescription="@string/camera_button_content_description" />
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -145,12 +183,12 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp">
 
                 <FrameLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/ComposeMessageViewFrameLayoutStyle"
                     android:layout_gravity="top" >
                     <com.android.messaging.ui.conversation.SimIconView
                         android:id="@+id/self_send_icon"
@@ -159,13 +197,16 @@
                         android:importantForAccessibility="no"
                         app:contactIconSize="normal"
                         app:reveal="true"
-                        android:clickable="true" />
+                        android:clickable="true"
+                        android:visibility="gone" />
                     <ImageButton
                         android:id="@+id/send_message_button"
                         android:layout_width="@dimen/conversation_message_contact_icon_size"
                         android:layout_height="@dimen/conversation_message_contact_icon_size"
-                        android:src="@drawable/ic_send_light"
-                        android:background="@drawable/send_arrow_background"
+                        android:src="@drawable/ic_send_plane"
+                        android:tint="@color/m3_on_primary"
+                        android:background="@drawable/send_button_background"
+                        android:padding="12dp"
                         android:contentDescription="@string/sendButtonContentDescription"
                         android:visibility="gone" />
                 </FrameLayout>

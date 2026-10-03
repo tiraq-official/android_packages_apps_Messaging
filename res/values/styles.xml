@@ -299,6 +299,13 @@
         <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
     </style>
 
+    <!-- Material 3 Expressive: icon buttons sitting inside the compose pill field. -->
+    <style name="ComposeMessageInlineIconButton">
+        <item name="android:background">@drawable/compose_inline_icon_background</item>
+        <item name="android:tint">@color/m3_on_surface_variant</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
     <style name="ContactListItemViewStyle">
         <item name="android:paddingStart">16dp</item>
     </style>
